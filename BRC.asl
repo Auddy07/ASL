@@ -1,6 +1,6 @@
-/************************** Created by Austin 'Auddy' Davenport *************************
-********************** Special thanks to Loomeh, Yellow, and Sooldy *********************
-*************************** Last Updated: August 30th, 2023 ****************************/
+/******************* Created by Austin 'Auddy' Davenport and Loomeh *********************
+*********************** Special thanks to Yellow, and Sooldy ****************************
+************************* Last Updated: August 30th, 2023 *******************************/
 
 	/*	Bomb Rush Cyberfunk Autoplitter & Load Remover
 		Stage IDs
@@ -44,12 +44,10 @@
 		 
 state("Bomb Rush Cyberfunk")
 {
-	// Working on these versions:
-	// Version 1.0.19735 (original release)
-	// Version 1.0.19849 (patch 19849 8/29/2023)
+	// Version 1.0.19864 (patch 19864 8/30/2023)
 	byte stageID : "UnityPlayer.dll", 0x01ADBA40, 0x30, 0x50, 0x28, 0x28, 0x70, 0x10, 0xBC;
 	byte objectiveID : "UnityPlayer.dll", 0x01ADBA40, 0x30, 0x50, 0x28, 0x90, 0x70, 0x28, 0x58;
-	byte sbHealth : "mono-2.0-bdwgc.dll", 0x0072A200, 0xFF0, 0x20, 0x50, 0x70, 0x20, 0x80;
+	byte sbHealth : "mono-2.0-bdwgc.dll", 0x0072A200, 0xFF8, 0x20, 0x48, 0x40, 0x20, 0x80;
 	bool loading : "UnityPlayer.dll", 0x01ADBA40, 0x68, 0x20, 0x140, 0x0, 0x120, 0x30, 0x57;
 }
 
