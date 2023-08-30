@@ -4,7 +4,7 @@
 
 	/*	Bomb Rush Cyberfunk Autoplitter & Load Remover
 		Stage IDs
-			4294967295 main menu
+			255 main menu
 			8 = Prologue
 			5 = Hideout
 			4 = Versum Hill
@@ -47,8 +47,8 @@ state("Bomb Rush Cyberfunk")
 	// Working on these versions:
 	// Version 1.0.19735 (original release)
 	// Version 1.0.19849 (patch 19849 8/29/2023)
-	uint stageID : "UnityPlayer.dll", 0x01A92DD8, 0x48, 0x28, 0x0, 0x60, 0x28, 0x100, 0xBC;
-	uint objectiveID : "UnityPlayer.dll", 0x01ADBA40, 0x30, 0x50, 0x28, 0x90, 0x70, 0x28, 0x58;
+	byte stageID : "UnityPlayer.dll", 0x01ADBA40, 0x30, 0x50, 0x28, 0x28, 0x70, 0x10, 0xBC;
+	byte objectiveID : "UnityPlayer.dll", 0x01ADBA40, 0x30, 0x50, 0x28, 0x90, 0x70, 0x28, 0x58;
 	bool loading : "UnityPlayer.dll", 0x01ADBA40, 0x68, 0x20, 0x140, 0x0, 0x120, 0x30, 0x57;
 }
 
@@ -101,7 +101,7 @@ startup
 start
 {
 	// Settings for New Game start Any%
-	if(current.stageID == 8 && old.stageID == 4294967295 && settings["Any"])
+	if(current.stageID == 8 && old.stageID == 255 && settings["Any"])
 	{
 		vars.gameMode = 1;	// Set game mode
 		return true;
@@ -193,7 +193,7 @@ isLoading
 reset
 {
 	// Reset if we are on the Main Menu
-	if(current.stageID == 4294967295 && old.stageID == 4294967295 && current.loading)
+	if(current.stageID == 255 && old.stageID == 255 && current.loading)
 	{
 		vars.gameMode = 0;
 		return true;
