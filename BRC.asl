@@ -1,6 +1,6 @@
 /************************** Created by Austin 'Auddy' Davenport *************************
 ********************** Special thanks to Loomeh, Yellow, and Sooldy *********************
-*************************** Last Updated: August 29th, 2023 ****************************/
+*************************** Last Updated: August 30th, 2023 ****************************/
 
 	/*	Bomb Rush Cyberfunk Autoplitter & Load Remover
 		Stage IDs
@@ -49,6 +49,7 @@ state("Bomb Rush Cyberfunk")
 	// Version 1.0.19849 (patch 19849 8/29/2023)
 	byte stageID : "UnityPlayer.dll", 0x01ADBA40, 0x30, 0x50, 0x28, 0x28, 0x70, 0x10, 0xBC;
 	byte objectiveID : "UnityPlayer.dll", 0x01ADBA40, 0x30, 0x50, 0x28, 0x90, 0x70, 0x28, 0x58;
+	byte sbHealth : "mono-2.0-bdwgc.dll", 0x0072A200, 0xFF0, 0x20, 0x50, 0x70, 0x20, 0x80;
 	bool loading : "UnityPlayer.dll", 0x01ADBA40, 0x68, 0x20, 0x140, 0x0, 0x120, 0x30, 0x57;
 }
 
@@ -95,7 +96,7 @@ startup
 	settings.Add("chapter4Any",true,"Chapter 4 End");
 	/*settings.Add("mataanAny",true,"Mataan End / Dream Sequence 5 Start");
 	settings.Add("endgameAny",true,"Dream Sequence 5 End / Endgame Start");  use these for glitchless*/
-	settings.Add("finalAny",true,"Faux Final Boss (currently not working correctly)");
+	settings.Add("finalAny",true,"Final Boss");
 }
 
 start
@@ -179,7 +180,7 @@ split
 		return true;
 	} use these for glitchless*/
 	// split for Chapter 5 end
-	if((current.stageID == 7 && current.objectiveID == 14 && old.objectiveID == 11) && settings["finalAny"]){
+	if((current.stageID == 7 && current.sbHealth == 0 && old.sbHealth == 1) && settings["finalAny"]){
 		return true;
 	}
 }
