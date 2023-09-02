@@ -125,8 +125,8 @@ startup
 	settings.Add("prince4Glitchless",false,"Flesh Prince Mataan End / Pyramid Island Start");
 	settings.Add("pyramidGlitchless",false,"Pyramid Island End / Dream Sequence 4 Start");
 	settings.Add("chapter4Glitchless",true,"Chapter 4 End");
-	settings.Add("mataanGlitchless",true,"Mataan End / Dream Sequence 5 Start");
-	settings.Add("endgameGlitchless",true,"Dream Sequence 5 End / Endgame Start");
+	settings.Add("mataanGlitchless",false,"Mataan End / Dream Sequence 5 Start");
+	settings.Add("endgameGlitchless",false,"Dream Sequence 5 End / Endgame Start");
 	settings.Add("finalGlitchless",true,"Final Boss");
 }
 
@@ -181,7 +181,7 @@ split
 	||
 	((current.stageID == 5 && old.stageID == 9 && current.objectiveID == 11) && settings["chapter4Any"])
 	||
-	((current.stageID == 7 && current.sbHealth == 0 && old.sbHealth == 1) && settings["finalAny"]))
+	((current.stageID == 7 && current.sbHealth == 1 && old.sbHealth == 0) && settings["finalAny"]))
 	{
 		return true;
 	}
