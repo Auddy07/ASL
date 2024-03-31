@@ -1,6 +1,6 @@
 /************************** Created by Austin 'Auddy' Davenport *************************
 ************************ Special thanks to the JSRF Modding Team ************************
-*************************** Last Updated: January 25th, 2022 ***************************/
+*************************** Last Updated: January 31st, 2024 ***************************/
 
 //  Jet Set Radio Future Timer
 
@@ -29,7 +29,7 @@ state("jsrf_data_container")		// Xbox state
 init
 {
 	// Set initial values
-	vars.gameMode = 0;	// Set the game mode to None = 0, Any% = 1, Souls% = 2 or PJ% = 3
+	vars.gameMode = 0;	// Set the game mode to None = 0, Any% = 1, Souls% = 2 , PJ% = 3, PJ% Glitchless = 4
 }
 
 startup
@@ -62,7 +62,7 @@ startup
 	settings.Add("rdhCopsAny",false,"RDH Cop Fight");
 	settings.Add("rdhAny",true,"Rokkaku Dai Heights");
 	settings.Add("99LightAny",false,"99th Light Side Cops");
-	settings.Add("99DarkAny",false,"99th Graffiti");
+	settings.Add("99RapidAny",false,"Rapid 99 Race Start");
 	settings.Add("99Any",true,"99th Street");
 	settings.Add("sewersAny",true,"Sewers");
 	settings.Add("bottomAny",true,"Bottom Point");
@@ -115,7 +115,7 @@ startup
 	settings.Add("rdhCopsSouls",false,"RDH Cop Fight");
 	settings.Add("rdhSouls",true,"Rokkaku Dai Heights");
 	settings.Add("99LightSouls",false,"99th Light Side Cops");
-	settings.Add("99DarkSouls",false,"99th Graffiti");
+	settings.Add("99RapidSouls",false,"Rapid 99 Race Start");
 	settings.Add("99Souls",true,"99th Street");
 	settings.Add("sewersSouls",true,"Sewers");
 	settings.Add("bottomSouls",true,"Bottom Point");
@@ -173,10 +173,40 @@ startup
 	settings.Add("rdhCopsPJ",false,"RDH Cop Fight");
 	settings.Add("rdhPJ",true,"Rokkaku Dai Heights");
 	settings.Add("99LightPJ",false,"99th Light Side Cops");
-	settings.Add("99DarkPJ",false,"99th Graffiti");
+	settings.Add("99RapidPJ",false,"Rapid 99 Race Start");
 	settings.Add("99PJ",true,"99th Street");
 	settings.Add("sewersPJ",true,"Sewers");
 	settings.Add("bottomPJ",true,"Bottom Point (always active)");
+	
+	// PJ% Glitchless
+	settings.CurrentDefaultParent = "gameMode";
+	settings.Add("PJG", false, "PJ% Glitchless");
+	settings.SetToolTip("PJG", "Check this Option if you want to run PJ% Glitchless");
+	
+	settings.CurrentDefaultParent = "PJG";
+	settings.Add("splitsPJG", true, "Autosplitter");
+	settings.SetToolTip("splitsPJG", "Check this Option if you want to use the Autosplitting feature.  You can choose your Splits below");
+	
+	settings.CurrentDefaultParent = "splitsPJG";
+	settings.Add("missionsPJG", true, "Missions");
+	settings.SetToolTip("missionsPJG", "Check this Option if you want to Autosplit on Missions");
+	
+	settings.CurrentDefaultParent = "missionsPJG";
+	settings.Add("garagePJG",true,"Garage");
+	settings.Add("beatPJG",false,"Beat Race Start");
+	settings.Add("dogenPJG",true,"Dogenzaka Hill");
+	settings.Add("comboPJG",false,"Combo Challenge Start");
+	settings.Add("shibuyaPJG",true,"Shibuya Terminal");
+	settings.Add("tanksPJG",false,"Tanks/Hayashi Fight");
+	settings.Add("pjRacePJG",false,"PJ Race Start");
+	settings.Add("chuoPJG",true,"Chuo Street");
+	settings.Add("rdhCopsPJG",false,"RDH Cop Fights (all 3)");
+	settings.Add("rdhPJG",true,"Rokkaku Dai Heights");
+	settings.Add("99CopsPJG",false,"99th Cop Fights (Light & Dark Sides)");
+	settings.Add("99RapidPJG",false,"Rapid 99 Race Start");
+	settings.Add("99PJG",true,"99th Street");
+	settings.Add("sewersPJG",true,"Sewers");
+	settings.Add("bottomPJG",true,"Bottom Point (always active)");
 }
 
 start
@@ -201,12 +231,19 @@ start
 		vars.gameMode = 3;	// Set game mode
 		return true;
 	}
+	
+	// Settings for New Game start PJ% Glitchless
+	if(((current.mission == 101 && old.mission == 65535) ||
+	   (current.mission == 101 && current.changeCount != old.changeCount)) && settings["PJG"]){
+		vars.gameMode = 4;	// Set game mode
+		return true;
+	}
 }
 
 gameTime
 {
 	// In Game Time
-	if(current.igt != old.igt && vars.gameMode != 4){
+	if(current.igt != old.igt && vars.gameMode != 0 && vars.gameMode < 5){
 		return TimeSpan.FromSeconds(current.igt*.01666666666666666666666666666667);
 	}
 }
@@ -243,7 +280,7 @@ split
 	||
 	((current.mission == 250 && old.mission == 251) && settings["99LightAny"])
 	||
-	((current.mission == 252 && old.mission == 250) && settings["99DarkAny"])
+	((current.mission == 252 && old.mission == 250) && settings["99RapidAny"])
 	||
 	((current.mission == 396 && old.mission == 252) && settings["99Any"])
 	||
@@ -324,7 +361,7 @@ split
 	||
 	((current.mission == 250 && old.mission == 251) && settings["99LightSouls"])
 	||
-	((current.mission == 252 && old.mission == 250) && settings["99DarkSouls"])
+	((current.mission == 252 && old.mission == 250) && settings["99RapidSouls"])
 	||
 	((current.mission == 396 && old.mission == 252) && settings["99Souls"])
 	||
@@ -415,13 +452,50 @@ split
 	||
 	((current.mission == 250 && old.mission == 251) && settings["99LightPJ"])
 	||
-	((current.mission == 252 && old.mission == 250) && settings["99DarkPJ"])
+	((current.mission == 252 && old.mission == 250) && settings["99RapidPJ"])
 	||
 	((current.mission == 396 && old.mission == 252) && settings["99PJ"])
 	||
 	((current.mission == 370 && old.mission == 360) && settings["sewersPJ"])
 	||
 	(((current.mission == 371 && current.cutscene == 16 && old.cutscene == 0) || (current.mission == 371 && current.cutscene == 65534 && old.cutscene == 65535)) && settings["bottomPJ"])
+	){
+		return true;
+	}
+	
+	// PJ% Glitchless
+	if((vars.gameMode == 4) &&
+	(((current.mission == 196 && old.mission == 1) || (current.mission == 196 && old.mission == 101)) && settings["garagePJG"])
+	||
+	((current.mission == 112 && old.mission == 110) && settings["beatPJG"])
+	||
+	((current.mission == 120 && old.mission == 100) && settings["dogenPJG"])
+	||
+	((current.mission == 123 && old.mission == 121) && settings["comboPJG"])
+	||
+	((current.mission == 296 && old.mission == 122) && settings["shibuyaPJG"])
+	||
+	((current.mission == 230 && old.mission == 231) && settings["tanksPJG"])
+	||
+	((current.mission == 230 && old.mission == 232) && settings["pjRacePJG"])
+	||
+	((current.mission == 240 && old.mission == 200) && settings["chuoPJG"])
+	||
+	((current.mission == 240 && old.mission == 241) && settings["rdhCopsPJG"])
+	||
+	((current.mission == 250 && old.mission == 200) && settings["rdhPJG"])
+	||
+	((current.mission == 250 && old.mission == 251) && settings["99LightPJG"])
+	||
+	((current.mission == 252 && old.mission == 250) && settings["99RapidPJG"])
+	||
+	((current.mission == 396 && old.mission == 252) && settings["99PJG"])
+	||
+	((current.mission == 360 && old.mission == 361) && settings["garamPJG"])
+	||
+	((current.mission == 370 && old.mission == 360) && settings["sewersPJG"])
+	||
+	(((current.mission == 371 && current.cutscene == 16 && old.cutscene == 0) || (current.mission == 371 && current.cutscene == 65534 && old.cutscene == 65535)) && settings["bottomPJG"])
 	){
 		return true;
 	}
