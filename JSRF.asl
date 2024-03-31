@@ -41,7 +41,7 @@ startup
 	// Any%
 	settings.CurrentDefaultParent = "gameMode";
 	settings.Add("Any", true, "Any%");
-	settings.SetToolTip("Any", "Check this Option if you want to run Any%");
+	settings.SetToolTip("Any", "Check this Option if you want to run Any% (39 total splits)");
 	
 	settings.CurrentDefaultParent = "Any";
 	settings.Add("splitsAny", true, "Autosplitter");
@@ -94,7 +94,7 @@ startup
 	// Souls%
 	settings.CurrentDefaultParent = "gameMode";
 	settings.Add("Souls", false, "Souls%");
-	settings.SetToolTip("Souls", "Check this Option if you want to run Souls%");
+	settings.SetToolTip("Souls", "Check this Option if you want to run Souls% (43 total splits)");
 	
 	settings.CurrentDefaultParent = "Souls";
 	settings.Add("splitsSouls", true, "Autosplitter");
@@ -152,7 +152,7 @@ startup
 	// PJ%
 	settings.CurrentDefaultParent = "gameMode";
 	settings.Add("PJ", false, "PJ%");
-	settings.SetToolTip("PJ", "Check this Option if you want to run PJ%");
+	settings.SetToolTip("PJ", "Check this Option if you want to run PJ% (14 total splits)");
 	
 	settings.CurrentDefaultParent = "PJ";
 	settings.Add("splitsPJ", true, "Autosplitter");
@@ -181,7 +181,7 @@ startup
 	// PJ% Glitchless
 	settings.CurrentDefaultParent = "gameMode";
 	settings.Add("PJG", false, "PJ% Glitchless");
-	settings.SetToolTip("PJG", "Check this Option if you want to run PJ% Glitchless");
+	settings.SetToolTip("PJG", "Check this Option if you want to run PJ% Glitchless (18 total splits)");
 	
 	settings.CurrentDefaultParent = "PJG";
 	settings.Add("splitsPJG", true, "Autosplitter");
