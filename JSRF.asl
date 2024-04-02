@@ -1,6 +1,6 @@
 /************************** Created by Austin 'Auddy' Davenport *************************
 ************************ Special thanks to the JSRF Modding Team ************************
-*************************** Last Updated: April 1st, 2024 ***************************/
+*************************** Last Updated: January 31st, 2024 ***************************/
 
 //  Jet Set Radio Future Timer
 
@@ -181,7 +181,7 @@ startup
 	// PJ% Glitchless
 	settings.CurrentDefaultParent = "gameMode";
 	settings.Add("PJG", false, "PJ% Glitchless");
-	settings.SetToolTip("PJG", "Check this Option if you want to run PJ% Glitchless (18 total splits)");
+	settings.SetToolTip("PJG", "Check this Option if you want to run PJ% Glitchless (19 total splits)");
 	
 	settings.CurrentDefaultParent = "PJG";
 	settings.Add("splitsPJG", true, "Autosplitter");
@@ -205,6 +205,7 @@ startup
 	settings.Add("99CopsPJG",false,"99th Cop Fights (Light & Dark Sides)");
 	settings.Add("99RapidPJG",false,"Rapid 99 Race Start");
 	settings.Add("99PJG",true,"99th Street");
+	settings.Add("garamPJG",true,"Garam Challenge");
 	settings.Add("sewersPJG",true,"Sewers");
 	settings.Add("bottomPJG",true,"Bottom Point (always active)");
 }
