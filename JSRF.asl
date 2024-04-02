@@ -205,7 +205,7 @@ startup
 	settings.Add("99CopsPJG",false,"99th Cop Fights (Light & Dark Sides)");
 	settings.Add("99RapidPJG",false,"Rapid 99 Race Start");
 	settings.Add("99PJG",true,"99th Street");
-	settings.Add("garamPJG",true,"Garam Challenge");
+	settings.Add("garamPJG",false,"Garam Challenge");
 	settings.Add("sewersPJG",true,"Sewers");
 	settings.Add("bottomPJG",true,"Bottom Point (always active)");
 }
