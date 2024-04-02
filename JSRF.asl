@@ -1,6 +1,6 @@
 /************************** Created by Austin 'Auddy' Davenport *************************
 ************************ Special thanks to the JSRF Modding Team ************************
-*************************** Last Updated: January 31st, 2024 ***************************/
+*************************** Last Updated: April 1st, 2024 ***************************/
 
 //  Jet Set Radio Future Timer
 
@@ -477,7 +477,7 @@ split
 	||
 	((current.mission == 230 && old.mission == 231) && settings["tanksPJG"])
 	||
-	((current.mission == 230 && old.mission == 232) && settings["pjRacePJG"])
+	((current.mission == 232 && old.mission == 230) && settings["pjRacePJG"])
 	||
 	((current.mission == 240 && old.mission == 200) && settings["chuoPJG"])
 	||
@@ -485,7 +485,7 @@ split
 	||
 	((current.mission == 250 && old.mission == 200) && settings["rdhPJG"])
 	||
-	((current.mission == 250 && old.mission == 251) && settings["99LightPJG"])
+	((current.mission == 250 && old.mission == 251) && settings["99CopsPJG"])
 	||
 	((current.mission == 252 && old.mission == 250) && settings["99RapidPJG"])
 	||
